@@ -1,11 +1,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# wget -qO dataset.csv https://surfdrive.surf.nl/files/index.php/s/vxOY3pFjSnP5KoQ/download
+# Jets and Sharks as used by McClelland
 df = pd.read_csv('dataset.csv', index_col=0)
-# Modify the dataset to add a missing education for the gang member 'Greg'
-df.at['Greg', 'HS'] = 1
-df.at['HS', 'Greg'] = 1
 
 excitation = {col: df.index[df[col] == 1].to_list() for col in df.columns}
 
@@ -87,7 +84,7 @@ class IACModel:
             self.update_activations()
 
 
-# Example probe, as also performed in the original paper
+# Example probe below, as also performed in the paper by McClelland
 def plot_model_outcome(activations_dict: dict, title: str) -> None:
     fig, ax = plt.subplots()
     ax.bar(activations_dict.keys(), activations_dict.values())
